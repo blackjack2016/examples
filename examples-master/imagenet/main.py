@@ -79,7 +79,7 @@ best_acc1 = 0
 
 def main():
     args = parser.parse_args()
-
+    k1=time.time()
     if args.seed is not None:
         random.seed(args.seed)
         torch.manual_seed(args.seed)
@@ -110,8 +110,9 @@ def main():
     else:
         # Simply call main_worker function
         main_worker(args.gpu, ngpus_per_node, args)
-
-
+    k2=time.time()
+    print(k2-k1)
+    
 def main_worker(gpu, ngpus_per_node, args):
     global best_acc1
     args.gpu = gpu
